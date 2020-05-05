@@ -17,6 +17,7 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
+    "redux-logger": "^3.0.6",
     "typescript": "~3.8.2"
   },
   "scripts": {
@@ -41,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@types/redux-logger": "^3.0.7",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
