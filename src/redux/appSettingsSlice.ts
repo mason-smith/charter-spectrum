@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppThunk, RootState } from 'redux/store';
+import { createSlice } from '@reduxjs/toolkit';
 
 interface AppSettingsState {
   apiUrl: string;

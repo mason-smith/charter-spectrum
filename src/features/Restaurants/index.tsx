@@ -19,19 +19,23 @@ const RestaurantTable = () => {
   return (
     <table className={classes.restaurantTable}>
       <TableHead />
-      <tbody className={classes.tableBody}>
-        {restaurantData.map((restaurant) => {
-          return (
-            <tr key={restaurant.id}>
-              <td>{restaurant.name}</td>
-              <td>{restaurant.city}</td>
-              <td>{restaurant.state}</td>
-              <td>{restaurant.telephone}</td>
-              <td>{restaurant.genre.replace(/,(?=[^\s])/g, ', ')}</td>
-            </tr>
-          );
-        })}
-      </tbody>
+      {!isLoading ? (
+        <tbody className={classes.tableBody}>
+          {restaurantData.map((restaurant) => {
+            return (
+              <tr key={restaurant.id}>
+                <td>{restaurant.name}</td>
+                <td>{restaurant.city}</td>
+                <td>{restaurant.state}</td>
+                <td>{restaurant.telephone}</td>
+                <td>{restaurant.genre.replace(/,(?=[^\s])/g, ', ')}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      ) : (
+        <p>Loading Restaurant Data</p>
+      )}
     </table>
   );
 };
