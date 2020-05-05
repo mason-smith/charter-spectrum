@@ -1,7 +1,9 @@
-import counterReducer from 'features/counter/counterSlice';
+import restaurantReducer from 'features/Restaurants/restaurantSlice';
+import appSettingsReducer from './appSettingsSlice';
 
 const rootReducer = {
-  counter: counterReducer,
+  appSettings: appSettingsReducer,
+  restaurants: restaurantReducer,
 };
 
 export default rootReducer;
