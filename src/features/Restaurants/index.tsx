@@ -15,7 +15,6 @@ const RestaurantTable = () => {
     shallowEqual
   );
 
-  console.log('restaurantData :>> ', restaurantData);
   return (
     <table className={classes.restaurantTable}>
       <TableHead />

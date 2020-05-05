@@ -36,6 +36,7 @@ export const restaurantSlice = createSlice({
       return {
         ...state,
         restaurantData: action.payload,
+        isLoading: false,
       };
     },
     requestRestaurantDataFailure: loadingFailed,
