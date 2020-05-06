@@ -7,6 +7,7 @@ import { RootState } from 'redux/store';
 import classes from './Restaurants.module.css';
 import TableHead from 'components/TableHead';
 import { HeaderData } from 'components/types';
+import { Restaurant } from './types';
 
 const headerData: HeaderData[] = [
   { header: 'Name', value: 'name', filter: false, id: cuid() },
@@ -32,7 +33,8 @@ const RestaurantTable = () => {
 
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     setData(
-      restaurantData.filter((item) => {
+      restaurantData.filter((item: Restaurant) => {
+        // @ts-ignore
         return item[e.target.name]
           .toLowerCase()
           .includes(e.target.value.toLowerCase());

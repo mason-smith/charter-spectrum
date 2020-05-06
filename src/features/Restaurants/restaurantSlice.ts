@@ -1,10 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface RestaurantState {
-  isLoading: boolean;
-  error: string | null;
-  restaurantData: any[];
-}
+// Local Dependencies
+import { RestaurantState, Restaurant } from './types';
 
 const initialState: RestaurantState = {
   isLoading: false,
@@ -35,7 +32,13 @@ export const restaurantSlice = createSlice({
     ) => {
       return {
         ...state,
-        restaurantData: action.payload,
+        restaurantData: action.payload.sort((a: Restaurant, b: Restaurant) =>
+          a.name.toLowerCase() > b.name.toLowerCase()
+            ? 1
+            : b.name.toLowerCase() > a.name.toLowerCase()
+            ? -1
+            : 0
+        ),
         isLoading: false,
       };
     },
