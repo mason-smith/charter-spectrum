@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 // Local Dependencies
 import fetchRestaurantData from 'features/Restaurants/actions';
 import RestaurantTable from 'features/Restaurants';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();

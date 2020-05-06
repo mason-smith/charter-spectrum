@@ -41,7 +41,7 @@ const RestaurantTable = () => {
   };
 
   return (
-    <table className={classes.restaurantTable}>
+    <table className={`${classes.restaurantTable} ${classes.card}`}>
       <TableHead data={headerData} handleChange={handleFilterChange} />
       <tbody className={classes.tableBody}>
         {data.length > 0 ? (
