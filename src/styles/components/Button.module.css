@@ -23,3 +23,10 @@
 .searchButton:active {
   background-color: rgba(0, 118, 188, 0.2);
 }
+
+.searchButton:disabled {
+  cursor: auto;
+  color: rgb(119, 120, 123);
+  background-color: transparent;
+  border: none;
+}

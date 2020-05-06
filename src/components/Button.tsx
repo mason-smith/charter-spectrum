@@ -5,9 +5,13 @@ import styles from 'styles/components/Button.module.css';
 import { ButtonProps } from './types';
 
 const Button: FC<ButtonProps> = (props) => {
-  const { children, onClick } = props;
+  const { children, onClick, disabled } = props;
   return (
-    <button onClick={onClick} className={styles.searchButton}>
+    <button
+      disabled={disabled || false}
+      onClick={onClick}
+      className={styles.searchButton}
+    >
       {children}
     </button>
   );

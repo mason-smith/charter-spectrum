@@ -90,7 +90,8 @@ const RestaurantTable = () => {
         <TableBody data={data} page={page} />
         <TableFooter
           count={data.length}
-          onChangePage={(val) => setPage(page + val)}
+          page={page}
+          onChangePage={(val) => setPage(val)}
         />
       </table>
     </>

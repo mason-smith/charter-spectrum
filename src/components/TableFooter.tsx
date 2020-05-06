@@ -6,16 +6,25 @@ import { TableFooterProps } from './types';
 import Button from './Button';
 
 const TableFooter: FC<TableFooterProps> = (props) => {
-  const { onChangePage, count } = props;
+  const { onChangePage, count, page } = props;
+  console.log('page >= Math.ceil(count / 10) - 1 :>> ', Math.ceil(count / 10));
   return (
     <tfoot className={styles.tableFooter}>
       <tr>
-        <td>{count}</td>
         <td>
-          <Button onClick={() => onChangePage(-1)}>{`<`}</Button>
+          page {page + 1} of {Math.ceil(count / 10) - 1}
         </td>
         <td>
-          <Button onClick={() => onChangePage(1)}>{`>`}</Button>
+          <Button
+            disabled={page === 0}
+            onClick={() => onChangePage(page - 1)}
+          >{`<`}</Button>
+        </td>
+        <td>
+          <Button
+            disabled={page >= Math.ceil(count / 10) - 1}
+            onClick={() => onChangePage(page + 1)}
+          >{`>`}</Button>
         </td>
       </tr>
     </tfoot>

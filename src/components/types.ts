@@ -29,6 +29,7 @@ export interface TableBodyProps {
 
 export interface TableFooterProps {
   count: number;
+  page: number;
   onChangePage: (val: number) => void;
 }
 
@@ -44,6 +45,7 @@ export interface InputProps {
  * Button
  */
 export interface ButtonProps {
+  disabled?: boolean;
   children: ReactNode;
   onClick: () => void;
 }
