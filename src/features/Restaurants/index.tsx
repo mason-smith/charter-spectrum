@@ -9,6 +9,7 @@ import TableHead from 'components/TableHead';
 import { HeaderData } from 'components/types';
 import { Restaurant } from './types';
 import Input from 'components/Input';
+import Button from 'components/Button';
 
 const headerData: HeaderData[] = [
   { header: 'Name', value: 'name', filter: false, id: cuid() },
@@ -46,7 +47,7 @@ const RestaurantTable = () => {
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     const options = e.target.name.replace('or ', '').split(', ');
-    const filteredArray = data.filter((restaurant) => {
+    const filteredArray = restaurantData.filter((restaurant) => {
       return (
         // @ts-ignore
         restaurant[options[0]]
@@ -68,22 +69,25 @@ const RestaurantTable = () => {
   return (
     <>
       <div className={classes.primaryInput}>
-        <Input
-          value="name, city, or genre"
-          handleChange={(e) => handleSearchChange(e)}
-        />
-        <button
-          onClick={() => setData(filteredData)}
-          className={classes.searchButton}
+        <form
+          className={classes.form}
+          onSubmit={(e) => {
+            e.preventDefault();
+            setData(filteredData);
+          }}
         >
-          SEARCH
-        </button>
+          <Input
+            value="name, city, or genre"
+            handleChange={(e) => handleSearchChange(e)}
+          />
+        </form>
+        <Button onClick={() => setData(filteredData)}>SEARCH</Button>
       </div>
       <table className={`${classes.restaurantTable} ${classes.card}`}>
         <TableHead data={headerData} handleChange={handleFilterChange} />
         <tbody className={classes.tableBody}>
           {data.length > 0 ? (
-            data.map((restaurant: any) => {
+            data.map((restaurant: Restaurant) => {
               return (
                 <tr key={restaurant.id}>
                   <td>{restaurant.name}</td>

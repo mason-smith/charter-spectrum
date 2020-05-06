@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react';
 
 // Local Dependencies
-import styles from './Input.module.css';
+import styles from 'styles/components/Input.module.css';
 import { InputProps } from './types';
 
 const Input: FC<InputProps> = (props) => {

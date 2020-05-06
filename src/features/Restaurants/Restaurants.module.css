@@ -1,34 +1,12 @@
 .primaryInput {
-  text-align: center;
-  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  width: 66.66%;
   padding-bottom: 2em;
 }
 
-.searchButton {
-  margin-left: 2em;
-  appearance: none;
-  background: none;
-  font-size: 1.5em;
-  padding-left: 12px;
-  padding-right: 12px;
-  letter-spacing: 4px;
-  outline: none;
-  border: 2px solid transparent;
-  color: rgb(0, 118, 188);
-  padding-bottom: 4px;
-  cursor: pointer;
-  background-color: rgba(0, 118, 188, 0.1);
-  border-radius: 2px;
-  transition: all 0.15s;
-}
-
-.searchButton:hover,
-.searchButton:focus {
-  border: 2px solid rgba(0, 118, 188, 0.4);
-}
-
-.searchButton:active {
-  background-color: rgba(0, 118, 188, 0.2);
+.form {
+  width: 66%;
 }
 
 .card {
@@ -62,7 +40,7 @@
   width: 100%;
   overflow-y: scroll;
   /* Decoration */
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .restaurantTable tr {

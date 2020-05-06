@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, ReactNode } from 'react';
 
 /**
  * Header
@@ -20,4 +20,13 @@ export interface HeaderProps {
 export interface InputProps {
   value: string;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+/**
+ * Button
+ */
+
+export interface ButtonProps {
+  children: ReactNode;
+  onClick: () => void;
 }
