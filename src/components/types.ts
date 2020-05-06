@@ -37,6 +37,7 @@ export interface TableFooterProps {
  * Input
  */
 export interface InputProps {
+  overrideClasses?: any;
   value: string;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }

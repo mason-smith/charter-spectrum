@@ -11,7 +11,7 @@ const TableFooter: FC<TableFooterProps> = (props) => {
     <tfoot className={styles.tableFooter}>
       <tr>
         <td>
-          page {page + 1} of {Math.ceil(count / 10) - 1}
+          page {page + 1} of {Math.ceil(count / 10)}
         </td>
         <td>
           <Button

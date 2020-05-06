@@ -1,4 +1,4 @@
-.searchButton {
+.button {
   appearance: none;
   background: none;
   font-size: 1.5em;
@@ -15,16 +15,16 @@
   transition: all 0.15s;
 }
 
-.searchButton:hover,
-.searchButton:focus {
+.button:hover,
+.button:focus {
   border: 2px solid rgba(0, 118, 188, 0.4);
 }
 
-.searchButton:active {
+.button:active {
   background-color: rgba(0, 118, 188, 0.2);
 }
 
-.searchButton:disabled {
+.button:disabled {
   cursor: auto;
   color: rgb(119, 120, 123);
   background-color: transparent;

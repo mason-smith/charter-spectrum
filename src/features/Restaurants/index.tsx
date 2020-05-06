@@ -4,7 +4,7 @@ import cuid from 'cuid';
 
 // Local Dependencies
 import { RootState } from 'redux/store';
-import classes from './Restaurants.module.css';
+import styles from './Restaurants.module.css';
 import TableHead from 'components/TableHead';
 import { HeaderData } from 'components/types';
 import { Restaurant } from './types';
@@ -70,22 +70,23 @@ const RestaurantTable = () => {
 
   return (
     <>
-      <div className={classes.primaryInput}>
+      <div className={styles.primaryInput}>
         <form
-          className={classes.form}
+          className={styles.form}
           onSubmit={(e) => {
             e.preventDefault();
             setData(filteredData);
           }}
         >
           <Input
+            overrideClasses={styles.overrideInput}
             value="name, city, or genre"
             handleChange={(e) => handleSearchChange(e)}
           />
         </form>
         <Button onClick={() => setData(filteredData)}>SEARCH</Button>
       </div>
-      <table className={`${classes.restaurantTable} ${classes.card}`}>
+      <table className={`${styles.restaurantTable} ${styles.card}`}>
         <TableHead data={headerData} handleChange={handleFilterChange} />
         <TableBody data={data} page={page} />
         <TableFooter
