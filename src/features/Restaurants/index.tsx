@@ -51,22 +51,20 @@ const RestaurantTable = () => {
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     const options = e.target.name.replace('or ', '').split(', ');
-    const filteredArray = restaurantData.filter((restaurant) => {
-      return (
-        // @ts-ignore
-        restaurant[options[0]]
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase()) ||
-        // @ts-ignore
-        restaurant[options[1]]
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase()) ||
-        // @ts-ignore
-        restaurant[options[2]]
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase())
+    const filteredArray = options
+      .flatMap((option) => {
+        return restaurantData.filter((restaurant) => {
+          // @ts-ignore
+          return restaurant[option]
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase());
+        });
+      })
+      .filter(
+        (restaurant, index, self) =>
+          index === self.findIndex((r) => r.id === restaurant.id)
       );
-    });
+
     setFilteredData(filteredArray);
   };
 
