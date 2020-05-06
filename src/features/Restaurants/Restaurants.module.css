@@ -61,9 +61,3 @@
   padding: 1rem;
   text-align: left;
 }
-
-/* Other options */
-
-.tableBody {
-  max-height: 50vh;
-}

@@ -10,6 +10,8 @@ import { HeaderData } from 'components/types';
 import { Restaurant } from './types';
 import Input from 'components/Input';
 import Button from 'components/Button';
+import TableBody from 'components/TableBody';
+import TableFooter from 'components/TableFooter';
 
 const headerData: HeaderData[] = [
   { header: 'Name', value: 'name', filter: false, id: cuid() },
@@ -29,14 +31,16 @@ const RestaurantTable = () => {
   );
   const [data, setData] = useState<Restaurant[]>([]);
   const [filteredData, setFilteredData] = useState<Restaurant[]>([]);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     setData(restaurantData);
+    setFilteredData(restaurantData);
   }, [restaurantData]);
 
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     setData(
-      restaurantData.filter((item: Restaurant) => {
+      filteredData.filter((item: Restaurant) => {
         // @ts-ignore
         return item[e.target.name]
           .toLowerCase()
@@ -85,25 +89,11 @@ const RestaurantTable = () => {
       </div>
       <table className={`${classes.restaurantTable} ${classes.card}`}>
         <TableHead data={headerData} handleChange={handleFilterChange} />
-        <tbody className={classes.tableBody}>
-          {data.length > 0 ? (
-            data.map((restaurant: Restaurant) => {
-              return (
-                <tr key={restaurant.id}>
-                  <td>{restaurant.name}</td>
-                  <td>{restaurant.city}</td>
-                  <td>{restaurant.state}</td>
-                  <td>{restaurant.telephone}</td>
-                  <td>{restaurant.genre.replace(/,(?=[^\s])/g, ', ')}</td>
-                </tr>
-              );
-            })
-          ) : (
-            <tr>
-              <td>No restaurants match these parameters</td>
-            </tr>
-          )}
-        </tbody>
+        <TableBody data={data} page={page} />
+        <TableFooter
+          count={data.length}
+          onChangePage={(val) => setPage(page + val)}
+        />
       </table>
     </>
   );

@@ -1,7 +1,8 @@
 import { ChangeEvent, ReactNode } from 'react';
+import { Restaurant } from 'features/Restaurants/types';
 
 /**
- * Header
+ * Table Header
  */
 export type HeaderData = {
   filter: boolean;
@@ -15,6 +16,23 @@ export interface HeaderProps {
 }
 
 /**
+ * Table Body
+ */
+export interface TableBodyProps {
+  data: Restaurant[];
+  page: number;
+}
+
+/**
+ * Table Footer
+ */
+
+export interface TableFooterProps {
+  count: number;
+  onChangePage: (val: number) => void;
+}
+
+/**
  * Input
  */
 export interface InputProps {
@@ -25,7 +43,6 @@ export interface InputProps {
 /**
  * Button
  */
-
 export interface ButtonProps {
   children: ReactNode;
   onClick: () => void;
