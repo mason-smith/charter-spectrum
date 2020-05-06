@@ -1,0 +1,19 @@
+.minimalInput {
+  -webkit-transition: all 125ms ease-out 125ms;
+  -moz-transition: all 125ms ease-out 125ms;
+  -o-transition: all 125ms ease-out 125ms;
+  transition: all 125ms ease-out 125ms;
+}
+
+.minimalInput {
+  margin-left: 1em;
+  border: 0;
+  padding: 0px 5px 5px 5px;
+  border-bottom: 1px solid #0076bc;
+  outline: none;
+  width: 50%;
+  font-size: 1em;
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  background-color: transparent;
+  color: #77787b;
+}

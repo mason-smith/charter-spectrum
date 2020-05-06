@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { FC, memo } from 'react';
+import cuid from 'cuid';
 
-const TableHead = () => {
+// Local Dependencies
+import { HeaderProps, HeaderData } from './types';
+import Input from './Input';
+
+const TableHead: FC<HeaderProps> = (props) => {
+  const { data, handleChange } = props;
   return (
     <thead>
       <tr>
-        <th>Name</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Phone Number</th>
-        <th>Genre</th>
+        {data.map((row: HeaderData) => {
+          return (
+            <th key={cuid()}>
+              {row.header}
+              {row.filter ? (
+                <Input
+                  handleChange={(e) => handleChange(e)}
+                  value={row.value}
+                />
+              ) : null}
+            </th>
+          );
+        })}
       </tr>
     </thead>
   );
 };
 
-export default TableHead;
+export default memo(TableHead);
