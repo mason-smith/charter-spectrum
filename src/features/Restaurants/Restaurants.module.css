@@ -1,3 +1,36 @@
+.primaryInput {
+  text-align: center;
+  width: 100%;
+  padding-bottom: 2em;
+}
+
+.searchButton {
+  margin-left: 2em;
+  appearance: none;
+  background: none;
+  font-size: 1.5em;
+  padding-left: 12px;
+  padding-right: 12px;
+  letter-spacing: 4px;
+  outline: none;
+  border: 2px solid transparent;
+  color: rgb(0, 118, 188);
+  padding-bottom: 4px;
+  cursor: pointer;
+  background-color: rgba(0, 118, 188, 0.1);
+  border-radius: 2px;
+  transition: all 0.15s;
+}
+
+.searchButton:hover,
+.searchButton:focus {
+  border: 2px solid rgba(0, 118, 188, 0.4);
+}
+
+.searchButton:active {
+  background-color: rgba(0, 118, 188, 0.2);
+}
+
 .card {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);

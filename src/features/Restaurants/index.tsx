@@ -8,6 +8,7 @@ import classes from './Restaurants.module.css';
 import TableHead from 'components/TableHead';
 import { HeaderData } from 'components/types';
 import { Restaurant } from './types';
+import Input from 'components/Input';
 
 const headerData: HeaderData[] = [
   { header: 'Name', value: 'name', filter: false, id: cuid() },
@@ -25,7 +26,8 @@ const RestaurantTable = () => {
     }),
     shallowEqual
   );
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<Restaurant[]>([]);
+  const [filteredData, setFilteredData] = useState<Restaurant[]>([]);
 
   useEffect(() => {
     setData(restaurantData);
@@ -42,29 +44,64 @@ const RestaurantTable = () => {
     );
   };
 
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const options = e.target.name.replace('or ', '').split(', ');
+    const filteredArray = restaurantData.filter((restaurant) => {
+      return (
+        // @ts-ignore
+        restaurant[options[0]]
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase()) ||
+        // @ts-ignore
+        restaurant[options[1]]
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase()) ||
+        // @ts-ignore
+        restaurant[options[2]]
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase())
+      );
+    });
+    setFilteredData(filteredArray);
+  };
+
   return (
-    <table className={`${classes.restaurantTable} ${classes.card}`}>
-      <TableHead data={headerData} handleChange={handleFilterChange} />
-      <tbody className={classes.tableBody}>
-        {data.length > 0 ? (
-          data.map((restaurant: any) => {
-            return (
-              <tr key={restaurant.id}>
-                <td>{restaurant.name}</td>
-                <td>{restaurant.city}</td>
-                <td>{restaurant.state}</td>
-                <td>{restaurant.telephone}</td>
-                <td>{restaurant.genre.replace(/,(?=[^\s])/g, ', ')}</td>
-              </tr>
-            );
-          })
-        ) : (
-          <tr>
-            <td>No restaurants match these parameters</td>
-          </tr>
-        )}
-      </tbody>
-    </table>
+    <>
+      <div className={classes.primaryInput}>
+        <Input
+          value="name, city, or genre"
+          handleChange={(e) => handleSearchChange(e)}
+        />
+        <button
+          onClick={() => setData(filteredData)}
+          className={classes.searchButton}
+        >
+          SEARCH
+        </button>
+      </div>
+      <table className={`${classes.restaurantTable} ${classes.card}`}>
+        <TableHead data={headerData} handleChange={handleFilterChange} />
+        <tbody className={classes.tableBody}>
+          {data.length > 0 ? (
+            data.map((restaurant: any) => {
+              return (
+                <tr key={restaurant.id}>
+                  <td>{restaurant.name}</td>
+                  <td>{restaurant.city}</td>
+                  <td>{restaurant.state}</td>
+                  <td>{restaurant.telephone}</td>
+                  <td>{restaurant.genre.replace(/,(?=[^\s])/g, ', ')}</td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td>No restaurants match these parameters</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </>
   );
 };
 

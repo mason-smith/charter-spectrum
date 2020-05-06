@@ -12,7 +12,7 @@ const Input: FC<InputProps> = (props) => {
       onChange={(e) => handleChange(e)}
       className={styles.minimalInput}
       type="text"
-      placeholder="Filter"
+      placeholder={`Filter by ${value}`}
     />
   );
 };
