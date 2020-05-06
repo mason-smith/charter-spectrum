@@ -7,7 +7,6 @@ import Button from './Button';
 
 const TableFooter: FC<TableFooterProps> = (props) => {
   const { onChangePage, count, page } = props;
-  console.log('page >= Math.ceil(count / 10) - 1 :>> ', Math.ceil(count / 10));
   return (
     <tfoot className={styles.tableFooter}>
       <tr>
