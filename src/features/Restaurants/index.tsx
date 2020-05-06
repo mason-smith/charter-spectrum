@@ -17,7 +17,7 @@ const headerData: HeaderData[] = [
 ];
 
 const RestaurantTable = () => {
-  const { restaurantData, isLoading } = useSelector(
+  const { restaurantData } = useSelector(
     (state: RootState) => ({
       restaurantData: state.restaurants.restaurantData,
       isLoading: state.restaurants.isLoading,
