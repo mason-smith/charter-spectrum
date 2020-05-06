@@ -46,7 +46,7 @@ const RestaurantTable = () => {
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     const options = e.target.name.replace('or ', '').split(', ');
-    const filteredArray = restaurantData.filter((restaurant) => {
+    const filteredArray = data.filter((restaurant) => {
       return (
         // @ts-ignore
         restaurant[options[0]]
