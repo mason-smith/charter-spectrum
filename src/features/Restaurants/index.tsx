@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState, useEffect } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
+import cuid from 'cuid';
 
 // Local Dependencies
 import { RootState } from 'redux/store';
@@ -8,11 +9,11 @@ import TableHead from 'components/TableHead';
 import { HeaderData } from 'components/types';
 
 const headerData: HeaderData[] = [
-  { header: 'Name', value: 'name', filter: false },
-  { header: 'City', value: 'city', filter: false },
-  { header: 'State', value: 'state', filter: true },
-  { header: 'Phone Number', value: 'telephone', filter: false },
-  { header: 'Genre', value: 'genre', filter: false },
+  { header: 'Name', value: 'name', filter: false, id: cuid() },
+  { header: 'City', value: 'city', filter: false, id: cuid() },
+  { header: 'State', value: 'state', filter: true, id: cuid() },
+  { header: 'Phone Number', value: 'telephone', filter: false, id: cuid() },
+  { header: 'Genre', value: 'genre', filter: true, id: cuid() },
 ];
 
 const RestaurantTable = () => {
@@ -26,26 +27,25 @@ const RestaurantTable = () => {
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
-    console.log('restaurantData :>> ', restaurantData);
     setData(restaurantData);
   }, [restaurantData]);
 
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const data = restaurantData.filter((item) => {
-      return item[e.target.name]
-        .toLowerCase()
-        .includes(e.target.value.toLowerCase());
-    });
-    console.log(data);
-    // setData(data);
+    setData(
+      restaurantData.filter((item) => {
+        return item[e.target.name]
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase());
+      })
+    );
   };
 
   return (
     <table className={classes.restaurantTable}>
       <TableHead data={headerData} handleChange={handleFilterChange} />
-      {!isLoading ? (
-        <tbody className={classes.tableBody}>
-          {data.map((restaurant: any) => {
+      <tbody className={classes.tableBody}>
+        {data.length > 0 ? (
+          data.map((restaurant: any) => {
             return (
               <tr key={restaurant.id}>
                 <td>{restaurant.name}</td>
@@ -55,9 +55,13 @@ const RestaurantTable = () => {
                 <td>{restaurant.genre.replace(/,(?=[^\s])/g, ', ')}</td>
               </tr>
             );
-          })}
-        </tbody>
-      ) : null}
+          })
+        ) : (
+          <tr>
+            <td>No restaurants match these parameters</td>
+          </tr>
+        )}
+      </tbody>
     </table>
   );
 };

@@ -7,6 +7,7 @@ export type HeaderData = {
   filter: boolean;
   header: string;
   value: string;
+  id: string;
 };
 export interface HeaderProps {
   data: HeaderData[];

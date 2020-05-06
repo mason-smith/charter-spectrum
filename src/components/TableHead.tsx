@@ -1,5 +1,4 @@
 import React, { FC, memo } from 'react';
-import cuid from 'cuid';
 
 // Local Dependencies
 import { HeaderProps, HeaderData } from './types';
@@ -12,7 +11,7 @@ const TableHead: FC<HeaderProps> = (props) => {
       <tr>
         {data.map((row: HeaderData) => {
           return (
-            <th key={cuid()}>
+            <th key={row.id}>
               {row.header}
               {row.filter ? (
                 <Input
