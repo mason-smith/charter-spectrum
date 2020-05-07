@@ -7,6 +7,7 @@ import styles from './Map.module.css';
 import { selectRestaurantData } from './mapSlice';
 import { Restaurant } from 'features/Restaurants/types';
 import createMap from './util';
+import Button from 'components/Button';
 
 const Map = () => {
   let history = useHistory();
@@ -20,8 +21,8 @@ const Map = () => {
   }, [restaurantData, history]);
 
   useEffect(() => {
-    createMap();
-  }, []);
+    restaurantData && createMap(restaurantData);
+  }, [restaurantData]);
 
   return (
     <div className={styles.container}>
@@ -46,6 +47,7 @@ const Map = () => {
         <p>
           <strong>Website:</strong> {restaurantData?.website}
         </p>
+        <Button onClick={() => history.push('/')}>Go Back</Button>
       </div>
     </div>
   );

@@ -7,14 +7,19 @@ import View from 'ol/View';
 
 // Local Dependencies
 import baseMap from './baseMap';
+import { Restaurant } from 'features/Restaurants/types';
+import iconLayer from './Icon';
 
-const createMap = () => {
+const createMap = (restaurantData: Restaurant) => {
+  console.log('restaurantData :>> ', restaurantData);
   const map = new Map({
-    layers: [baseMap()],
+    layers: [baseMap(), iconLayer(restaurantData)],
     target: 'map',
     view: new View({
-      center: [-10997148, 4569099],
+      projection: 'EPSG:4326',
+      center: [-97.5, 40],
       zoom: 5,
+      minZoom: 5,
     }),
     controls: defaultControls({
       zoom: false,
@@ -28,8 +33,6 @@ const createMap = () => {
       zoomDelta: 1,
     }),
   });
-
-  // handleFeaturedBunker(map);
 
   return map;
 };
