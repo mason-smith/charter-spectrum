@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 // Local Dependencies
 import fetchRestaurantData from 'features/Restaurants/actions';
-import RestaurantTable from 'features/Restaurants';
+import AppRouter from './Router';
 import './App.css';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   }, [dispatch]);
   return (
     <div className="App">
-      <RestaurantTable />
+      <AppRouter />
     </div>
   );
 }

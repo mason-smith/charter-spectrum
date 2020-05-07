@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState, useEffect } from 'react';
-import { useSelector, shallowEqual } from 'react-redux';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import cuid from 'cuid';
 
 // Local Dependencies
@@ -12,6 +13,7 @@ import Input from 'components/Input';
 import Button from 'components/Button';
 import TableBody from 'components/TableBody';
 import TableFooter from 'components/TableFooter';
+import { setRestaurantData } from 'features/Map/mapSlice';
 
 const headerData: HeaderData[] = [
   { header: 'Name', value: 'name', filter: false, id: cuid() },
@@ -22,6 +24,8 @@ const headerData: HeaderData[] = [
 ];
 
 const RestaurantTable = () => {
+  const dispatch = useDispatch();
+  let history = useHistory();
   const { restaurantData } = useSelector(
     (state: RootState) => ({
       restaurantData: state.restaurants.restaurantData,
@@ -68,6 +72,11 @@ const RestaurantTable = () => {
     setFilteredData(filteredArray);
   };
 
+  const handleClickRow = (restaurant: Restaurant) => {
+    dispatch(setRestaurantData(restaurant));
+    history.push('/details');
+  };
+
   return (
     <>
       <div className={styles.primaryInput}>
@@ -88,7 +97,7 @@ const RestaurantTable = () => {
       </div>
       <table className={`${styles.restaurantTable} ${styles.card}`}>
         <TableHead data={headerData} handleChange={handleFilterChange} />
-        <TableBody data={data} page={page} />
+        <TableBody data={data} page={page} handleClickRow={handleClickRow} />
         <TableFooter
           count={data.length}
           page={page}
