@@ -21,6 +21,7 @@ export interface HeaderProps {
 export interface TableBodyProps {
   data: Restaurant[];
   page: number;
+  handleClickRow: (restaurant: Restaurant) => void;
 }
 
 /**

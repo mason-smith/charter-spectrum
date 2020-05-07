@@ -6,13 +6,13 @@ import { Restaurant } from 'features/Restaurants/types';
 import { TableBodyProps } from './types';
 
 const TableBody: FC<TableBodyProps> = (props) => {
-  const { data, page } = props;
+  const { data, page, handleClickRow } = props;
   return (
     <tbody className={styles.tableBody}>
       {data.length > 0 ? (
         data.slice(page * 10, page * 10 + 10).map((restaurant: Restaurant) => {
           return (
-            <tr key={restaurant.id}>
+            <tr onClick={() => handleClickRow(restaurant)} key={restaurant.id}>
               <td>{restaurant.name}</td>
               <td>{restaurant.city}</td>
               <td>{restaurant.state}</td>

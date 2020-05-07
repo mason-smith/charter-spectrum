@@ -12,11 +12,11 @@ jobs:
             - run: npm install
             # - run: npm test
             - run:
-                name: "Build Project"
-                command: "npm run build"
+                name: 'Build Project'
+                command: 'npm run build'
             - run:
-                name: "Deploy to Firebase Hosting"
-                command: "./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN"
+                name: 'Deploy to Firebase Hosting'
+                command: './node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN'
 workflows:
   build-and-deploy:
     jobs:
