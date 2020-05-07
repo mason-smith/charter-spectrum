@@ -3,7 +3,6 @@ import VectorSource from 'ol/source/Vector';
 import { Vector as VectorLayer } from 'ol/layer';
 import Point from 'ol/geom/Point';
 import { Icon, Style } from 'ol/style';
-import { fromLonLat } from 'ol/proj';
 
 // Local Dependencies
 import { Restaurant } from 'features/Restaurants/types';
