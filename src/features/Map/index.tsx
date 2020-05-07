@@ -24,13 +24,18 @@ const Map = () => {
     restaurantData && createMap(restaurantData);
   }, [restaurantData]);
 
+  console.log(
+    "restaurantData?.telephone.replace(/[{()}]/g, '') :>> ",
+    restaurantData?.telephone.replace(/[{()}]/g, '')
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.map} id="map"></div>
       <div className={styles.detailsContainer}>
         <h2>{restaurantData?.name}</h2>
         <p>
-          <strong>Serves:</strong>{' '}
+          <strong>Serves:</strong>
           {restaurantData?.genre.replace(/,(?=[^\s])/g, ', ')}
         </p>
         <p>
@@ -42,10 +47,20 @@ const Map = () => {
           {restaurantData?.zip}
         </p>
         <p>
-          <strong>Phone:</strong> {restaurantData?.telephone}
+          <strong>Phone: </strong>
+          <a href={`tel:${restaurantData?.telephone.replace(/[{()}]/g, '')}`}>
+            {restaurantData?.telephone}
+          </a>
         </p>
         <p>
-          <strong>Website:</strong> {restaurantData?.website}
+          <strong>Website: </strong>
+          <a
+            rel="noopener noreferrer"
+            href={restaurantData?.website}
+            target="_blank"
+          >
+            {restaurantData?.website}
+          </a>
         </p>
         <Button onClick={() => history.push('/')}>Go Back</Button>
       </div>
