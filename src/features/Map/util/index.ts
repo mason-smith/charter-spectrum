@@ -11,7 +11,6 @@ import { Restaurant } from 'features/Restaurants/types';
 import iconLayer from './Icon';
 
 const createMap = (restaurantData: Restaurant) => {
-  console.log('restaurantData :>> ', restaurantData);
   const map = new Map({
     layers: [baseMap(), iconLayer(restaurantData)],
     target: 'map',
