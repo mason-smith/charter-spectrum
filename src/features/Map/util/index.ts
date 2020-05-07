@@ -8,16 +8,13 @@ import View from 'ol/View';
 // Local Dependencies
 import baseMap from './baseMap';
 
-// import handleFeaturedBunker from './featuredBunkers';
-
 const createMap = () => {
   const map = new Map({
     layers: [baseMap()],
     target: 'map',
     view: new View({
-      center: [0, 0],
-      projection: 'EPSG:4326',
-      zoom: 0,
+      center: [-10997148, 4569099],
+      zoom: 5,
     }),
     controls: defaultControls({
       zoom: false,
